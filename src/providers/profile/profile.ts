@@ -1224,7 +1224,7 @@ export class ProfileProvider {
       opts.m = 1;
       opts.n = 1;
       opts.networkName = 'livenet';
-      opts.coin = Coin.PART;
+      opts.coin = Coin.RHOM;
       this.createWallet(opts)
         .then(wallet => {
           return resolve(wallet);

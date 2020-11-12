@@ -49,10 +49,10 @@ export class MultiSendPage extends WalletTabsChild {
   private validDataTypeMap: string[] = [
     'BitcoinAddress',
     'BitcoinCashAddress',
-    'ParticlAddress',
+    'RhombusAddress',
     'BitcoinUri',
     'BitcoinCashUri',
-    'ParticlUri'
+    'RhombusUri'
   ];
 
   constructor(
@@ -166,8 +166,8 @@ export class MultiSendPage extends WalletTabsChild {
           case 'bch':
             parsed = this.bwcProvider.getBitcoreCash().URI(this.search);
             break;
-          case 'part':
-            parsed = this.bwcProvider.getBitcoreParticl().URI(this.search);
+          case 'rhom':
+            parsed = this.bwcProvider.getBitcoreRhombus().URI(this.search);
             break;
           default:
             parsed = this.bwcProvider.getBitcore().URI(this.search);

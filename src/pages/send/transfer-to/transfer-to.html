@@ -67,14 +67,14 @@
   </ion-list>
 </div>
 
-<div class="card" *ngIf="walletPartList && walletPartList[0]">
+<div class="card" *ngIf="walletRhomList && walletRhomList[0]">
   <ion-item-divider class="title">
-    <img src="assets/img/icon-particl.svg" alt="Particl Wallets" width="16" />
-    <span translate>Transfer to Particl Wallet</span>
+    <img src="assets/img/icon-rhombus.svg" alt="Rhombus Wallets" width="16" />
+    <span translate>Transfer to Rhombus Wallet</span>
   </ion-item-divider>
 
   <ion-list>
-    <button ion-item *ngFor="let wallet of filteredWallets[0] ? filteredWallets : walletPartList" (click)="close(wallet)" [ngClass]="{'wallet-disabled': !wallet.isComplete || wallet.needsBackup}">
+    <button ion-item *ngFor="let wallet of filteredWallets[0] ? filteredWallets : walletRhomList" (click)="close(wallet)" [ngClass]="{'wallet-disabled': !wallet.isComplete || wallet.needsBackup}">
       <ion-icon class="item-img" item-start>
         <img *ngIf="wallet.network == 'testnet'" [ngStyle]="{'background-color': wallet.color}" src="assets/img/icon-wallet-testnet.svg" class="icon-wallet" />
         <img *ngIf="wallet.network != 'testnet'" [ngStyle]="{'background-color': wallet.color}" src="assets/img/icon-wallet.svg" class="icon-wallet" />

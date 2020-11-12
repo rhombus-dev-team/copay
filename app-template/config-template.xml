@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.particl.*BUNDLENAME*"
+<widget id="io.rhombus.*BUNDLENAME*"
   version="*VERSION*"
   android-versionCode="*ANDROIDVERSION*"
   ios-CFBundleVersion="*VERSION*"
@@ -8,8 +8,8 @@
     <description>
       *PURPOSELINE*
     </description>
-    <author email="hello@particl.io" href="*URL*">
-        Particl
+    <author email="hello@rhombus.io" href="*URL*">
+        Rhombus
     </author>
     <content src="index.html" />
     <access origin="https://bws.bitpay.com" />
@@ -20,7 +20,7 @@
     <access origin="https://api.coinbase.com" />
     <access origin="https://coinbase.com" />
     <access origin="https://api.coinmarketcap.com" />
-    <access origin="https://*.particl.io" />
+    <access origin="https://*.rhombus.io" />
     <allow-navigation href="gap://ready" />
     <preference name="AndroidPersistentFileLocation" value="Internal" />
     <preference name="iosPersistentFileLocation" value="Library" />
@@ -81,9 +81,9 @@
     <plugin name="cordova-plugin-file" spec="6.0.1" />
     <plugin name="cordova-custom-config" spec="https://github.com/cmgustavo/cordova-custom-config.git#3a1902fb700dc8c1e9ac9db592aa48d7d900cde0" />
     <plugin name="cordova-plugin-customurlscheme-ng" spec="5.0.0">
-      <variable name="URL_SCHEME" value="particl" />
+      <variable name="URL_SCHEME" value="rhombus" />
       <variable name="SECOND_URL_SCHEME" value="*APPURI*" />
-      <variable name="THIRD_URL_SCHEME" value="particl-bitpay" />
+      <variable name="THIRD_URL_SCHEME" value="rhombus-bitpay" />
     </plugin>
     <plugin name="cordova-plugin-fcm" spec="https://github.com/cmgustavo/cordova-plugin-fcm.git#v4.1" />
 

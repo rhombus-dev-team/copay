@@ -195,7 +195,7 @@ export class SettingsPage {
   }
 
   public openHelpExternalLink(): void {
-    const url = 'https://github.com/particl/copay/issues';
+    const url = 'https://github.com/rhombus/copay/issues';
     const optIn = true;
     const title = null;
     const message = this.translate.instant(

@@ -134,7 +134,7 @@ export class BitPayCardProvider {
 
         if (!matched && isInvoiceLessThanOneDayOld) {
           var isInvoiceUnderpaid =
-            invoices[i].exceptionStatus === 'paidPartial';
+            invoices[i].exceptionStatus === 'paidRhomial';
 
           if (
             ['paid', 'confirmed', 'complete'].indexOf(invoices[i].status) >=

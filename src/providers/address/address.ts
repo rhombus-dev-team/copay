@@ -7,13 +7,13 @@ import { BwcProvider } from '../../providers/bwc/bwc';
 export class AddressProvider {
   private bitcore;
   private bitcoreCash;
-  private bitcoreParticl;
+  private bitcoreRhombus;
   private Bitcore;
 
   constructor(private bwcProvider: BwcProvider) {
     this.bitcore = this.bwcProvider.getBitcore();
     this.bitcoreCash = this.bwcProvider.getBitcoreCash();
-    this.bitcoreParticl = this.bwcProvider.getBitcoreParticl();
+    this.bitcoreRhombus = this.bwcProvider.getBitcoreRhombus();
     this.Bitcore = {
       btc: {
         lib: this.bitcore,
@@ -23,8 +23,8 @@ export class AddressProvider {
         lib: this.bitcoreCash,
         translateTo: 'btc'
       },
-      part: {
-        lib: this.bitcoreParticl
+      rhom: {
+        lib: this.bitcoreRhombus
       }
     };
   }
@@ -40,8 +40,8 @@ export class AddressProvider {
         return 'bch';
       } catch (e) {
         try {
-          new this.Bitcore['part'].lib.Address(address);
-          return 'part';
+          new this.Bitcore['rhom'].lib.Address(address);
+          return 'rhom';
         } catch (e) {
           return null;
         }
@@ -60,7 +60,7 @@ export class AddressProvider {
           .name;
       } catch (e) {
         try {
-          network = this.bwcProvider.getBitcoreParticl().Address(address)
+          network = this.bwcProvider.getBitcoreRhombus().Address(address)
             .network.name;
         } catch (e) {}
       }
@@ -96,7 +96,7 @@ export class AddressProvider {
 
   public extractAddress(str: string): string {
     const extractedAddress = str
-      .replace(/^(bitcoincash:|bchtest:|bitcoin:|particl:)/i, '')
+      .replace(/^(bitcoincash:|bchtest:|bitcoin:|rhombus:)/i, '')
       .replace(/\?.*/, '');
     return extractedAddress;
   }
@@ -107,8 +107,8 @@ export class AddressProvider {
     const Address = this.bitcore.Address;
     const URICash = this.bitcoreCash.URI;
     const AddressCash = this.bitcoreCash.Address;
-    const URIParticl = this.bitcoreParticl.URI;
-    const AddressParticl = this.bitcoreParticl.Address;
+    const URIRhombus = this.bitcoreRhombus.URI;
+    const AddressRhombus = this.bitcoreRhombus.Address;
 
     // Bip21 uri
     let uri, uriAddress;
@@ -126,12 +126,12 @@ export class AddressProvider {
         if (AddressCash.isValid(uriAddress, 'livenet')) return true;
         if (AddressCash.isValid(uriAddress, 'testnet')) return true;
       }
-    } else if (/^particl:/i.test(str)) {
-      if (URIParticl.isValid(str)) {
-        uri = new URIParticl(str);
+    } else if (/^rhombus:/i.test(str)) {
+      if (URIRhombus.isValid(str)) {
+        uri = new URIRhombus(str);
         uriAddress = uri.address.toString();
-        if (AddressParticl.isValid(uriAddress, 'livenet')) return true;
-        if (AddressParticl.isValid(uriAddress, 'testnet')) return true;
+        if (AddressRhombus.isValid(uriAddress, 'livenet')) return true;
+        if (AddressRhombus.isValid(uriAddress, 'testnet')) return true;
       }
     }
 
@@ -140,8 +140,8 @@ export class AddressProvider {
     if (Address.isValid(str, 'testnet')) return true;
     if (AddressCash.isValid(str, 'livenet')) return true;
     if (AddressCash.isValid(str, 'testnet')) return true;
-    if (AddressParticl.isValid(str, 'livenet')) return true;
-    if (AddressParticl.isValid(str, 'testnet')) return true;
+    if (AddressRhombus.isValid(str, 'livenet')) return true;
+    if (AddressRhombus.isValid(str, 'testnet')) return true;
 
     return false;
   }

@@ -42,7 +42,7 @@ export class AboutPage {
 
   public openExternalLink(): void {
     const url =
-      'https://github.com/particl/' +
+      'https://github.com/rhombus/' +
       this.appProvider.info.gitHubRepoName +
       '/tree/' +
       this.appProvider.info.commitHash +
@@ -65,7 +65,7 @@ export class AboutPage {
   }
 
   public openTermsOfUse() {
-    const url = 'https://particl.io/policy/copay/privacy.html';
+    const url = 'https://rhombus.io/policy/copay/privacy.html';
     const optIn = true;
     const title = null;
     const message = this.translate.instant('View Wallet Terms of Use');

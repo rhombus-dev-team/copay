@@ -20,8 +20,8 @@ export class BwcProvider {
     return BWC.BitcoreCash;
   }
 
-  public getBitcoreParticl() {
-    return BWC.BitcoreParticl;
+  public getBitcoreRhombus() {
+    return BWC.BitcoreRhombus;
   }
 
   public getErrors() {
@@ -41,7 +41,7 @@ export class BwcProvider {
 
     // note opts use `bwsurl` all lowercase;
     let bwc = new BWC({
-      baseUrl: opts.bwsurl || 'https://bws.particl.io/bws/api',
+      baseUrl: opts.bwsurl || 'https://bws.rhombus.io/bws/api',
       verbose: opts.verbose,
       timeout: 100000,
       transports: ['polling']

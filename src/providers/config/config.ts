@@ -42,7 +42,7 @@ export interface Config {
     copay: {
       url: string;
     };
-    particl: {
+    rhombus: {
       url: string;
     };
   };
@@ -58,7 +58,7 @@ export interface Config {
       android: string;
       wp: string;
     };
-    particl: {
+    rhombus: {
       ios: string;
       android: string;
       wp: string;
@@ -119,7 +119,7 @@ export interface Config {
       live: string;
       test: string;
     };
-    part: {
+    rhom: {
       live: string;
       test: string;
     };
@@ -152,7 +152,7 @@ export class ConfigProvider {
         reconnectDelay: 5000,
         idleDurationMin: 4,
         settings: {
-          unitName: 'PART',
+          unitName: 'RHOM',
           unitToSatoshi: 100000000,
           unitDecimals: 8,
           unitCode: 'btc',
@@ -165,7 +165,7 @@ export class ConfigProvider {
 
       // Bitcore wallet service URL
       bws: {
-        url: 'https://bws.particl.io/bws/api'
+        url: 'https://bws.rhombus.io/bws/api'
       },
 
       download: {
@@ -175,8 +175,8 @@ export class ConfigProvider {
         copay: {
           url: 'https://copay.io/#download'
         },
-        particl: {
-          url: 'https://github.com/particl/copay/releases'
+        rhombus: {
+          url: 'https://github.com/rhombus-dev-team/copay/releases'
         }
       },
 
@@ -194,10 +194,10 @@ export class ConfigProvider {
             'https://play.google.com/store/apps/details?id=com.bitpay.copay',
           wp: ''
         },
-        particl: {
-          ios: 'https://itunes.apple.com/us/app/particl-copay/id1449589645',
+        rhombus: {
+          ios: 'https://itunes.apple.com/us/app/rhombus-copay/id1449589645',
           android:
-            'https://play.google.com/store/apps/details?id=io.particl.copay',
+            'https://play.google.com/store/apps/details?id=io.rhombus.copay',
           wp: ''
         }
       },
@@ -251,9 +251,9 @@ export class ConfigProvider {
           live: 'bch-insight.bitpay.com/#',
           test: 'test-bch-insight.bitpay.com/#'
         },
-        part: {
-          live: 'explorer.particl.io',
-          test: 'explorer-testnet.particl.io'
+        rhom: {
+          live: 'explorer.rhombus.io',
+          test: 'explorer-testnet.rhombus.io'
         }
       }
     };

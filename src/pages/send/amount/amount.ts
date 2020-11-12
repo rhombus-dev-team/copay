@@ -225,11 +225,11 @@ export class AmountPage extends WalletTabsChild {
       });
     }
 
-    if (parentWalletCoin === 'part' || !parentWalletCoin) {
+    if (parentWalletCoin === 'rhom' || !parentWalletCoin) {
       this.availableUnits.push({
-        name: 'Particl',
-        id: 'part',
-        shortName: 'PART'
+        name: 'Rhombus',
+        id: 'rhom',
+        shortName: 'RHOM'
       });
     }
 

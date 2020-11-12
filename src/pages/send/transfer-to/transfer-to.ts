@@ -34,16 +34,16 @@ export class TransferToPage {
   public search: string = '';
   public walletsBtc;
   public walletsBch;
-  public walletsPart;
+  public walletsRhom;
   public walletBchList: FlatWallet[];
   public walletBtcList: FlatWallet[];
-  public walletPartList: FlatWallet[];
+  public walletRhomList: FlatWallet[];
   public contactsList = [];
   public filteredContactsList = [];
   public filteredWallets = [];
   public hasBtcWallets: boolean;
   public hasBchWallets: boolean;
-  public hasPartWallets: boolean;
+  public hasRhomWallets: boolean;
   public hasContacts: boolean;
   public contactsShowMore: boolean;
   public amount: string;
@@ -69,10 +69,10 @@ export class TransferToPage {
   ) {
     this.walletsBtc = this.profileProvider.getWallets({ coin: 'btc' });
     this.walletsBch = this.profileProvider.getWallets({ coin: 'bch' });
-    this.walletsPart = this.profileProvider.getWallets({ coin: 'part' });
+    this.walletsRhom = this.profileProvider.getWallets({ coin: 'rhom' });
     this.hasBtcWallets = !_.isEmpty(this.walletsBtc);
     this.hasBchWallets = !_.isEmpty(this.walletsBch);
-    this.hasPartWallets = !_.isEmpty(this.walletsPart);
+    this.hasRhomWallets = !_.isEmpty(this.walletsRhom);
   }
 
   @Input()
@@ -83,7 +83,7 @@ export class TransferToPage {
 
     this.walletBchList = this.getBchWalletsList();
     this.walletBtcList = this.getBtcWalletsList();
-    this.walletPartList = this.getPartWalletsList();
+    this.walletRhomList = this.getRhomWalletsList();
     this.updateContactsList();
   }
 
@@ -118,8 +118,8 @@ export class TransferToPage {
     return this.hasBtcWallets ? this.getRelevantWallets(this.walletsBtc) : [];
   }
 
-  private getPartWalletsList(): FlatWallet[] {
-    return this.hasPartWallets ? this.getRelevantWallets(this.walletsPart) : [];
+  private getRhomWalletsList(): FlatWallet[] {
+    return this.hasRhomWallets ? this.getRelevantWallets(this.walletsRhom) : [];
   }
 
   private getRelevantWallets(rawWallets): FlatWallet[] {
@@ -217,8 +217,8 @@ export class TransferToPage {
         return _.includes(wallet.name.toLowerCase(), this.search.toLowerCase());
       });
     }
-    if (this.hasPartWallets && this._wallet.coin === 'part') {
-      this.filteredWallets = this.walletPartList.filter(wallet => {
+    if (this.hasRhomWallets && this._wallet.coin === 'rhom') {
+      this.filteredWallets = this.walletRhomList.filter(wallet => {
         return _.includes(wallet.name.toLowerCase(), this.search.toLowerCase());
       });
     }

@@ -9,31 +9,31 @@ export class RateProvider {
   private rates;
   private alternatives;
   private ratesBCH;
-  private ratesPART;
+  private ratesRHOM;
   private ratesBtcAvailable: boolean;
   private ratesBchAvailable: boolean;
-  private ratesPartAvailable: boolean;
+  private ratesRhomAvailable: boolean;
 
   private SAT_TO_BTC: number;
   private BTC_TO_SAT: number;
 
   private rateServiceUrl = env.ratesAPI.btc;
   private bchRateServiceUrl = env.ratesAPI.bch;
-  private partRateServiceUrl = env.ratesAPI.part;
+  private rhomRateServiceUrl = env.ratesAPI.rhom;
 
   constructor(private http: HttpClient, private logger: Logger) {
     this.logger.debug('RateProvider initialized');
     this.rates = {};
     this.alternatives = [];
     this.ratesBCH = {};
-    this.ratesPART = {};
+    this.ratesRHOM = {};
     this.SAT_TO_BTC = 1 / 1e8;
     this.BTC_TO_SAT = 1e8;
     this.ratesBtcAvailable = false;
     this.ratesBchAvailable = false;
     this.updateRatesBtc();
     this.updateRatesBch();
-    this.updateRatesPart();
+    this.updateRatesRhom();
   }
 
   public updateRatesBtc(): Promise<any> {
@@ -75,29 +75,29 @@ export class RateProvider {
     });
   }
 
-  public updateRatesPart(): Promise<any> {
+  public updateRatesRhom(): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.getPART().then(dataPART => {
-        const rate_btc = dataPART[0].price_btc;
+      this.getRHOM().then(dataRHOM => {
+        const rate_btc = dataRHOM[0].price_btc;
         this.getBTC()
           .then(dataBTC => {
             _.each(dataBTC, currency => {
-              this.ratesPART[currency.code] = currency.rate * rate_btc;
+              this.ratesRHOM[currency.code] = currency.rate * rate_btc;
             });
-            this.ratesPartAvailable = true;
+            this.ratesRhomAvailable = true;
             resolve();
           })
-          .catch(errorPART => {
-            this.logger.error(errorPART);
-            reject(errorPART);
+          .catch(errorRHOM => {
+            this.logger.error(errorRHOM);
+            reject(errorRHOM);
           });
       });
     });
   }
 
-  public getPART(): Promise<any> {
+  public getRHOM(): Promise<any> {
     return new Promise(resolve => {
-      this.http.get(this.partRateServiceUrl).subscribe(data => {
+      this.http.get(this.rhomRateServiceUrl).subscribe(data => {
         resolve(data);
       });
     });
@@ -121,7 +121,7 @@ export class RateProvider {
 
   public getRate(code: string, chain?: string): number {
     if (chain == 'bch') return this.ratesBCH[code];
-    if (chain == 'part') return this.ratesPART[code];
+    if (chain == 'rhom') return this.ratesRHOM[code];
     else return this.rates[code];
   }
 
@@ -137,15 +137,15 @@ export class RateProvider {
     return this.ratesBchAvailable;
   }
 
-  public isPartAvailable() {
-    return this.ratesPartAvailable;
+  public isRhomAvailable() {
+    return this.ratesRhomAvailable;
   }
 
   public toFiat(satoshis: number, code: string, chain: string): number {
     if (
       (!this.isBtcAvailable() && chain == 'btc') ||
       (!this.isBchAvailable() && chain == 'bch') ||
-      (!this.isPartAvailable() && chain == 'part')
+      (!this.isRhomAvailable() && chain == 'rhom')
     ) {
       return null;
     }
@@ -156,7 +156,7 @@ export class RateProvider {
     if (
       (!this.isBtcAvailable() && chain == 'btc') ||
       (!this.isBchAvailable() && chain == 'bch') ||
-      (!this.isPartAvailable() && chain == 'part')
+      (!this.isRhomAvailable() && chain == 'rhom')
     ) {
       return null;
     }
@@ -183,7 +183,7 @@ export class RateProvider {
       if (
         (this.ratesBtcAvailable && chain == 'btc') ||
         (this.ratesBchAvailable && chain == 'bch') ||
-        (this.ratesPartAvailable && chain == 'part')
+        (this.ratesRhomAvailable && chain == 'rhom')
       )
         resolve();
       else {
@@ -197,8 +197,8 @@ export class RateProvider {
             resolve();
           });
         }
-        if (chain == 'part') {
-          this.updateRatesPart().then(() => {
+        if (chain == 'rhoms') {
+          this.updateRatesRhom().then(() => {
             resolve();
           });
         }

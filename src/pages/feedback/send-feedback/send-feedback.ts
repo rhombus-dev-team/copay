@@ -203,7 +203,7 @@ export class SendFeedbackPage {
       if (!option) {
         this.openExternalLink(externalLink);
       } else {
-        this.openExternalLink('https://github.com/particl/copay/issues');
+        this.openExternalLink('https://github.com/rhombus/copay/issues');
       }
     });
   }

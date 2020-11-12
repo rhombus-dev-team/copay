@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+wimport { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Events } from 'ionic-angular';
 import * as _ from 'lodash';
@@ -23,7 +23,7 @@ import { TxFormatProvider } from '../tx-format/tx-format';
 export enum Coin {
   BTC = 'btc',
   BCH = 'bch',
-  PART = 'part'
+  RHOM = 'rhom'
 }
 
 export interface WalletOptions {
@@ -1663,8 +1663,8 @@ export class WalletProvider {
     switch (coin) {
       case 'bch':
         return network == 'testnet' ? 'bchtest' : 'bitcoincash';
-      case 'part':
-        return 'particl';
+      case 'rhom':
+        return 'rhombus';
       default:
         return 'bitcoin';
     }

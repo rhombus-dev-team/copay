@@ -145,7 +145,7 @@ export class WalletTabsPage {
       wallet.status.wallet.singleAddress;
     if (isSingleAddress !== undefined) {
       this.canColdStake = 
-        wallet.coin === 'part' && 
+        wallet.coin === 'rhoms' && 
         ((wallet.n === 1 && !isSingleAddress) ||
          (wallet.n > 1));
     } else {
